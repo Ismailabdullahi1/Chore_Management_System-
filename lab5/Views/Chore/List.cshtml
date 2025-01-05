@@ -1,0 +1,34 @@
+﻿@model List<Lab5.Models.Chore>
+
+<h1>List of Chores</h1>
+
+<a class="btn btn-primary" href="@Url.Action("Create")">Create New Chore</a>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var chore in Model)
+        {
+            <tr>
+                <td>@chore.Id</td>
+                <td>@chore.Title</td>
+                <td>@chore.Description</td>
+                <td>@chore.DueDate.ToShortDateString()</td>
+                <td>@chore.Status</td>
+                <td>
+                    <a class="btn btn-warning" href="@Url.Action("Update", new { id = chore.Id })">Edit</a>
+                    <a class="btn btn-danger" href="@Url.Action("Delete", new { id = chore.Id })" onclick="return confirm('Are you sure you want to delete this chore?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
